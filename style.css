@@ -1,0 +1,189 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+   
+@font-face {
+  font-family: "rainyhearts";
+  src: url("fonts/rainyhearts.ttf") format("truetype");
+  font-display: swap;
+}
+
+.film {
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  margin-bottom: 8px;
+}
+.film a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a {
+  color: purple;
+  text-decoration: none;
+  border-bottom: 2px dashed black;
+}
+
+a:hover {
+  color: white;
+}
+
+.panel {
+  background: #d8a8f0;
+  border: 2px solid black;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+nav {
+  background: #9333ea;
+  padding: 0px 16px;
+  margin-bottom: 16px;
+  border: 2px solid black;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  border-bottom: none;
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+nav a:hover {
+  color: black;
+}
+
+h1 {
+  margin-bottom: 4px;
+}
+
+p {
+  margin-top: 0;
+}
+
+hr {
+  border: none;
+  border-top: 3px dashed black;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #000000, transparent);
+  margin: 24px 0;
+  position: relative;
+}
+
+hr::after {
+  content: '✦';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #c084fc;
+  color: black;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+body {
+  background-color: #BC85DE;
+  color: black;
+  font-family: "rainyhearts", sans-serif;
+  font-size: 20px;
+  padding: 20px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.discord-btn {
+  margin-top: auto;
+}
+
+.song {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 2px solid black;
+}
+
+.gallery-page {
+  background-color: #3b1f5e;
+}
+
+.layout {
+  display: flex;
+  gap: 16px;
+}
+
+.date {
+  font-size: 12px;
+  color: #5a3a7a;
+  margin-top: 0;
+}
+
+.sidebar {
+  width: 150px;
+  flex-shrink: 0;
+  background: #9333ea;
+  border: 2px solid black;
+  padding: 12px;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  margin-bottom: 8px;
+  border-bottom: none;
+}
+
+.sidebar a:hover {
+  color: black;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;       /* caps it at viewport height */
+  overflow-y: auto;
+  align-self: flex-start; /* important if parent is flexbox */
+}
+
+.main {
+  flex: 1;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid black;
+  padding-bottom: 4px;
+}
