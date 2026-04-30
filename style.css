@@ -187,3 +187,38 @@ h1, h2, h3 {
   border-bottom: 2px solid black;
   padding-bottom: 4px;
 }
+
+/* === Gallery Containers === */
+.container {
+  display: flex;
+  flex: 1;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.column img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 2px solid black;
+}
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
