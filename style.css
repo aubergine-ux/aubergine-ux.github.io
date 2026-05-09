@@ -209,4 +209,31 @@ h1, h2, h3 {
     flex-direction: row;
     flex-wrap: wrap;
   }
+
+  .elsewhere {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.elsewhere li {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.label {
+  font-size: 0.8em;
+  color: #a78bca;
+  min-width: 6rem;
+}
+
+.section-desc {
+  font-size: 0.85em;
+  color: #a78bca;
+  margin-bottom: 0.75rem;
+}
+
 }
