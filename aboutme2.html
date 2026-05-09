@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>armd — about</title>
+    <meta name="darkreader-lock">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        background: #1a0a2e;
+        color: #e8d5ff;
+        font-family: "rainyhearts", sans-serif;
+        font-size: 18px;
+        line-height: 1.7;
+        padding: 2rem 1.25rem;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      @font-face {
+        font-family: "rainyhearts";
+        src: url("fonts/rainyhearts.ttf") format("truetype");
+        font-display: swap;
+      }
+
+      a { color: #c084fc; text-decoration: none; border-bottom: 1px dashed #6b21a8; }
+      a:hover { color: #e8d5ff; }
+
+      nav { margin-bottom: 3rem; }
+      nav ul { list-style: none; display: flex; flex-wrap: wrap; }
+      nav li::after { content: ' ·'; color: #a78bca; }
+      nav li:last-child::after { content: ''; }
+      nav a { border-bottom: none; margin-right: 0.4rem; }
+
+      h1 { font-size: 1.5rem; margin-bottom: 0.3rem; border: none; padding: 0; }
+      h2 { font-size: 1rem; margin-bottom: 0.2rem; border: none; padding: 0; }
+
+      .subtitle { font-size: 0.85rem; color: #a78bca; margin-bottom: 0.5rem; }
+      .subtitle a { color: #a78bca; border-bottom: none; }
+      .tags { font-size: 0.85rem; color: #a78bca; margin-bottom: 0.75rem; }
+
+      main { display: flex; flex-direction: column; gap: 2rem; }
+
+      .section-desc { font-size: 0.85rem; color: #a78bca; margin-bottom: 0.6rem; }
+
+      .elsewhere { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+      .elsewhere li { display: flex; gap: 0.75rem; flex-wrap: wrap; font-size: 0.95rem; }
+      .label { color: #a78bca; font-size: 0.8rem; min-width: 5rem; }
+
+      .badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 1rem; }
+
+      footer {
+        margin-top: 3rem;
+        padding-top: 1rem;
+        border-top: 1px solid #2d1254;
+        font-size: 0.8rem;
+        color: #a78bca;
+      }
+      footer a { color: #a78bca; border-bottom: none; margin-right: 0.75rem; }
+    </style>
+  </head>
+  <body>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="aboutme.html">About</a></li>
+      </ul>
+    </nav>
+
+    <main>
+
+      <div>
+        <h1>armd</h1>
+        <p class="subtitle">[ <a href="https://osm.pm/ruby">Osmium</a> · <a href="https://github.com/aubergine-ux">GitHub</a> ]</p>
+        <p class="tags">Topic One · Topic Two · Topic Three</p>
+        <p>A sentence or two about me.</p>
+      </div>
+
+      <section>
+        <h2>Elsewhere</h2>
+        <p class="section-desc">Where am I?</p>
+        <ul class="elsewhere">
+          <li>
+            <span class="label">GitHub</span>
+            <a href="https://github.com/aubergine-ux">@aubergine-ux</a>
+          </li>
+          <li>
+            <span class="label">Email</span>
+            <a href="mailto:mail@armd.one">mail@armd.one</a>
+          </li>
+          <li>
+            <span class="label">Osmium</span>
+            <a href="https://osm.pm/ruby">osm.pm/ruby</a>
+          </li>
+        </ul>
+      </section>
+
+      <div class="badges">
+        <img src="images/ruby-button.gif" width="88" height="31" alt="armd">
+        <a href="https://azee.sh/"><img src="images/azee-badge.gif" width="88" height="31" alt="azee"></a>
+        <a href="https://pandaptable.moe"><img src="https://pandaptable.moe/buttons/button.avif" width="88" height="31" alt="pandaptable"></a>
+        <a href="https://x.com/4evrArmd"><img src="images/buttons/twitter.gif" width="88" height="31" alt="twitter"></a>
+        <a href="https://discord.com/users/rbi90"><img src="images/buttons/discord.gif" width="88" height="31" alt="discord"></a>
+      </div>
+
+    </main>
+
+    <footer>
+      <a href="index.html">Home</a>
+      <a href="mailto:mail@armd.one">Email</a>
+      <a href="/feed.xml">RSS</a>
+    </footer>
+
+  </body>
+</html>
