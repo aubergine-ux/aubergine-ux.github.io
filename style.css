@@ -1,0 +1,247 @@
+@font-face {
+  font-family: "rainyhearts";
+  src: url("fonts/rainyhearts.ttf") format("truetype");
+  font-display: swap;
+}
+
+.film {
+  border-bottom: 1px solid #6b21a8;
+  padding: 8px 0;
+  margin-bottom: 8px;
+}
+.film a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a {
+  color: #c084fc;
+  text-decoration: none;
+  border-bottom: 2px dashed #6b21a8;
+}
+
+a:hover {
+  color: #e8d5ff;
+}
+
+.panel {
+  background: #2d1254;
+  border: 2px solid #6b21a8;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+nav {
+  background: #2d1254;
+  padding: 0px 16px;
+  margin-bottom: 16px;
+  border: 2px solid #6b21a8;
+}
+
+nav a {
+  color: #e8d5ff;
+  text-decoration: none;
+  border-bottom: none;
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+nav a:hover {
+  color: #c084fc;
+}
+
+h1 {
+  margin-bottom: 4px;
+}
+
+p {
+  margin-top: 0;
+}
+
+hr {
+  border: none;
+  border-top: 3px dashed #6b21a8;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #6b21a8, transparent);
+  margin: 24px 0;
+  position: relative;
+}
+
+hr::after {
+  content: '✦';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #1a0a2e;
+  color: #c084fc;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+body {
+  background-color: #1a0a2e;
+  color: #e8d5ff;
+  font-family: "rainyhearts", sans-serif;
+  font-size: 20px;
+  padding: 20px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.discord-btn {
+  margin-top: auto;
+}
+
+.song {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 2px solid #6b21a8;
+}
+
+.gallery-page {
+  background-color: #0d0618;
+}
+
+.layout {
+  display: flex;
+  gap: 16px;
+}
+
+.date {
+  font-size: 12px;
+  color: #a78bca;
+  margin-top: 0;
+}
+
+.sidebar {
+  width: 150px;
+  flex-shrink: 0;
+  background: #2d1254;
+  border: 2px solid #6b21a8;
+  padding: 12px;
+}
+
+.sidebar a {
+  display: block;
+  color: #e8d5ff;
+  margin-bottom: 8px;
+  border-bottom: none;
+}
+
+.sidebar a:hover {
+  color: #c084fc;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  align-self: flex-start;
+}
+
+.main {
+  flex: 1;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid #6b21a8;
+  padding-bottom: 4px;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.column img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 2px solid #6b21a8;
+}
+
+.elsewhere {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.elsewhere li {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.label {
+  font-size: 0.8em;
+  color: #a78bca;
+  min-width: 6rem;
+}
+
+.section-desc {
+  font-size: 0.85em;
+  color: #a78bca;
+  margin-bottom: 0.75rem;
+}
+
+.buttons-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  padding: 12px;
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
