@@ -109,9 +109,21 @@ body {
 }
 
 .song {
+  border-bottom: 1px solid #6b21a8;
   display: flex;
+  padding: 8px 0;
   gap: 16px;
   align-items: center;
+}
+
+.song h3 {
+  margin: 0 0 2px 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.song p {
+  margin: 0;;
 }
 
 .gallery {
