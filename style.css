@@ -193,6 +193,7 @@ h1, h2, h3 {
 .container {
   display: flex;
   flex: 1;
+  gap: 8px;
 }
 
 .column {
@@ -207,6 +208,12 @@ h1, h2, h3 {
   height: auto;
   display: block;
   border: 2px solid #6b21a8;
+  transition: border-color 0.15s ease, filter 0.15s ease;
+}
+
+.column img:hover {
+  border-color: #c084fc;
+  filter: brightness(1.1);
 }
 
 .elsewhere {
@@ -255,5 +262,9 @@ h1, h2, h3 {
     position: static;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .container {
+    flex-direction: column;
   }
 }
