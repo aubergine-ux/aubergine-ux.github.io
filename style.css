@@ -85,8 +85,13 @@ hr::after {
   gap: 4px;
 }
 
+img {
+  max-width: 100%;
+}
+
 .header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
 }
@@ -123,7 +128,12 @@ body {
 }
 
 .song p {
-  margin: 0;;
+  margin: 0;
+}
+
+.song > div {
+  flex: 1;
+  min-width: 0;
 }
 
 .gallery {
@@ -204,6 +214,7 @@ h1, h2, h3 {
 }
 
 .column img {
+  box-sizing: border-box;
   width: 100%;
   height: auto;
   display: block;
@@ -214,6 +225,12 @@ h1, h2, h3 {
 .column img:hover {
   border-color: #c084fc;
   filter: brightness(1.1);
+}
+
+.about {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
 }
 
 .elsewhere {
@@ -252,19 +269,39 @@ h1, h2, h3 {
 }
 
 @media (max-width: 600px) {
+  body {
+    padding: 12px;
+  }
+
   .layout {
     flex-direction: column;
   }
 
   .sidebar {
+    box-sizing: border-box;
     width: 100%;
     height: auto;
     position: static;
     flex-direction: row;
     flex-wrap: wrap;
+    column-gap: 16px;
   }
 
+  .sidebar h3 {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .about {
+    flex-direction: column;
+  }
+
+  /* One photo list instead of three stacked columns, so the date order holds. */
   .container {
     flex-direction: column;
+  }
+
+  .column {
+    display: contents;
   }
 }
