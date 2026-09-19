@@ -205,7 +205,9 @@ async function sortGalleryByDate() {
       photo.img.title = label;
       photo.img.alt = photo.img.alt.split('//')[0].trim() + ` // ${label}`;
     }
-    // Dealing across the columns keeps the dates reading left-to-right.
+    // Dealing across the columns keeps the dates reading left-to-right. On
+    // phones the columns collapse into one list, which follows this order.
+    photo.img.style.order = position;
     columns[position % columns.length].append(photo.img);
   });
 }
