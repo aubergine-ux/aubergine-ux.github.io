@@ -1,13 +1,12 @@
-document.addEventListener('contextmenu', e => e.preventDefault());
-
 // Sort the gallery by the date each photo was actually taken.
 //
 // Browsers don't expose EXIF from an <img>, so we grab the first chunk of each
-// JPEG ourselves and read the tags out of it. That chunk is all the metadata
-// lives in, so a 6 MB photo costs a 64 KB request here. Re-ordering afterwards
-// only moves the existing <img> nodes around, which never re-downloads them.
+// JPEG ourselves and read the tags out of it. The thumbnails keep their EXIF
+// right at the start of the file (about 1 KB of it), so a small request covers
+// it. Re-ordering afterwards only moves the existing nodes around, which never
+// re-downloads them.
 
-const HEADER_BYTES = 64 * 1024;
+const HEADER_BYTES = 4 * 1024;
 const MAX_PARALLEL = 6;
 
 // EXIF tags we care about, in the order we'd rather have them.
@@ -178,16 +177,20 @@ function formatDate(date) {
   return date.toLocaleDateString(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' });
 }
 
+// Each photo is an <a> (link to the large copy) wrapping an <img> (thumbnail).
+const columns = [...document.querySelectorAll('.container .column')];
+
+// The photos in the order people see them. Starts as written in the HTML and
+// becomes newest-first once the dates are in; the lightbox steps through this.
+let tiles = columns.flatMap(column => [...column.querySelectorAll('a')]);
+
 async function sortGalleryByDate() {
-  const columns = [...document.querySelectorAll('.container .column')];
-  if (!columns.length) return;
+  if (!tiles.length) return;
 
-  const images = columns.flatMap(column => [...column.querySelectorAll('img')]);
-  if (!images.length) return;
-
+  const images = tiles.map(tile => tile.querySelector('img'));
   const dates = await mapWithLimit(images, MAX_PARALLEL, dateTakenFor);
 
-  const photos = images.map((img, index) => ({ img, date: dates[index], index }));
+  const photos = tiles.map((tile, index) => ({ tile, img: images[index], date: dates[index], index }));
   if (!photos.some(photo => photo.date)) return; // Nothing readable; leave the page alone.
 
   // Newest first. Photos we couldn't date keep their authored order at the end.
@@ -200,16 +203,84 @@ async function sortGalleryByDate() {
 
   photos.forEach((photo, position) => {
     if (photo.date) {
-      const label = formatDate(photo.date);
       photo.img.dataset.date = photo.date.toISOString();
-      photo.img.title = label;
-      photo.img.alt = photo.img.alt.split('//')[0].trim() + ` // ${label}`;
+      photo.img.title = formatDate(photo.date);
     }
     // Dealing across the columns keeps the dates reading left-to-right. On
     // phones the columns collapse into one list, which follows this order.
-    photo.img.style.order = position;
-    columns[position % columns.length].append(photo.img);
+    photo.tile.style.order = position;
+    columns[position % columns.length].append(photo.tile);
   });
+
+  tiles = photos.map(photo => photo.tile);
 }
+
+// ---------- Lightbox ----------
+//
+// Clicking a photo opens its large copy in a <dialog> on top of the page.
+// Without JavaScript the links still work: they just open the large image.
+
+function buildLightbox() {
+  const dialog = document.createElement('dialog');
+  dialog.className = 'lightbox';
+  dialog.innerHTML = `
+    <img alt="">
+    <div class="lightbox-bar">
+      <button type="button" class="btn" data-step="-1" aria-label="Previous photo">&larr;</button>
+      <button type="button" class="btn" data-step="1" aria-label="Next photo">&rarr;</button>
+      <span class="lightbox-caption" aria-live="polite"></span>
+      <button type="button" class="btn" data-close aria-label="Close">close</button>
+    </div>`;
+  document.body.append(dialog);
+  return dialog;
+}
+
+const lightbox = buildLightbox();
+const lightboxImg = lightbox.querySelector('img');
+const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+let current = 0;
+
+function show(index) {
+  current = (index + tiles.length) % tiles.length;
+  const tile = tiles[current];
+  const thumb = tile.querySelector('img');
+
+  // Put the thumbnail up straight away (it's already loaded), then swap in
+  // the large copy once it arrives.
+  lightboxImg.src = thumb.currentSrc || thumb.src;
+  lightboxImg.alt = thumb.alt;
+  const large = new Image();
+  large.onload = () => {
+    if (tiles[current] === tile) lightboxImg.src = large.src;
+  };
+  large.src = tile.href;
+
+  const date = thumb.title ? ` · ${thumb.title}` : '';
+  lightboxCaption.textContent = `${current + 1} / ${tiles.length}${date} — ${thumb.alt}`;
+}
+
+document.querySelector('.container')?.addEventListener('click', event => {
+  const tile = event.target.closest('a');
+  // Let ctrl/cmd/middle-click open the image in a new tab as normal.
+  if (!tile || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey) return;
+  event.preventDefault();
+  show(tiles.indexOf(tile));
+  lightbox.showModal();
+});
+
+lightbox.addEventListener('click', event => {
+  const step = event.target.closest('[data-step]');
+  if (step) show(current + Number(step.dataset.step));
+  else if (event.target.closest('[data-close]') || event.target === lightbox) lightbox.close();
+});
+
+lightbox.addEventListener('keydown', event => {
+  if (event.key === 'ArrowLeft') show(current - 1);
+  if (event.key === 'ArrowRight') show(current + 1);
+});
+
+// Hand focus back to the photo that was open, so keyboard users don't lose
+// their place.
+lightbox.addEventListener('close', () => tiles[current]?.focus());
 
 sortGalleryByDate();

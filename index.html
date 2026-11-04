@@ -2,11 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ruby's Crypt</title>
-    <meta name="darkreader-lock">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/favicon.jpg">
+    <meta name="darkreader-lock">
+    <title>Ruby's Crypt</title>
+    <meta name="description" content="Ruby's little corner of the web: photos, music, poems and a tuxedo cat named Socks.">
+    <meta name="theme-color" content="#6b21a8">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ruby's Crypt">
+    <meta property="og:title" content="Ruby's Crypt">
+    <meta property="og:description" content="Ruby's little corner of the web: photos, music, poems and a tuxedo cat named Socks.">
+    <meta property="og:url" content="https://armd.one/">
+    <meta property="og:image" content="https://armd.one/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Socks, a black and white tuxedo cat, lounging in the sun.">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preload" href="fonts/rainyhearts.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -15,17 +28,17 @@
       <div class="header">
         <h1>Ruby's Crypt</h1>
         <div class="buttons">
-          <img src="images/buttons/corporateinvasion.gif" height="31">
+          <img src="images/buttons/corporateinvasion.gif" width="235" height="31" alt="i feel violated by corporate invasion on my attention span">
         </div>
       </div>
-      <p>Welcome! This site is a project to help me learn HTML & CSS! <3</p>
+      <p>Welcome! This site is a project to help me learn HTML & CSS! &lt;3</p>
     </div>
 
     <div class="layout">
 
       <div class="sidebar">
         <h3>Navigation</h3>
-        <a href="index.html">Home</a>
+        <a href="index.html" aria-current="page">Home</a>
         <a href="blog.html">Blog</a>
         <a href="music.html">Music</a>
         <a href="gallery.html">Gallery</a>
@@ -38,13 +51,13 @@
           <div class="about">
 
             <div style="flex: 2;">
-              <p style="font-family: 'Times New Roman', Times, serif; letter-spacing: 0.05em; line-height: 1.8; word-spacing: 0.1em;">Hiii my name is ruby, I'm 20 & I live in New England</p>
-              <ul style="font-family: 'Times New Roman', Times, serif; letter-spacing: 0.05em; line-height: 1.8; word-spacing: 0.1em;">
+              <p class="prose">Hiii my name is ruby, I'm 20 &amp; I live in New England</p>
+              <ul class="prose">
                 <li>Music, Concerts, Nature, Camping, Photography, Roadtrips.</li>
                 <li>Cars, Corvettes, S-Chassis, Niche quirky Stuff.</li>
                 <li>I have a 4 y/o Son named Socks, he's always seen in a fresh tuxedo.</li>
-                <img src="images/socks_1.jpg" alt="A Picture of a Black and White Tuxedo cat named Socks." style="width: 250px;">
               </ul>
+              <img class="socks" src="images/socks_small.jpg" width="600" height="800" alt="Socks, a black and white tuxedo cat, lounging on a wicker basket in the sun.">
             </div>
 
             <div style="flex: 1;">
@@ -69,20 +82,43 @@
           </div>
         </div>
 
-        <img src="images/buttons/thunderstorms.png">
+        <div class="panel">
+          <h2>Link to me!</h2>
+          <p class="section-desc">Want my button on your site? Copy the code below &lt;3</p>
+          <div class="linkback">
+            <img src="images/ruby-button.gif" width="88" height="31" alt="Ruby's Crypt">
+            <textarea readonly rows="3" aria-label="HTML code for my 88x31 button">&lt;a href="https://armd.one/"&gt;&lt;img src="https://armd.one/images/ruby-button.gif" width="88" height="31" alt="Ruby's Crypt"&gt;&lt;/a&gt;</textarea>
+            <button type="button" class="btn copy-btn">copy</button>
+          </div>
+        </div>
+
+        <img src="images/buttons/thunderstorms.png" width="359" height="69" alt="This user loves thunderstorms">
 
       </div>
 
     </div>
 
     <footer class="buttons-footer">
-      <a><img src="images/ruby-button.gif" width="88" height="31" alt="88x31 button"></a>
-          <a href="https://azee.sh/"><img src="images/azee-badge.gif" width="88" height="31" alt="88x31 button"></a>
-          <a href="https://pandaptable.moe"><img src="https://pandaptable.moe/buttons/button.avif" width="88" height="31" alt="88x31 button"></a>
-          <a href="https://discord.com/users/rbi90" target="_blank">
-            <img src="images/buttons/discord.gif" width="88" height="31">
-          </a>
+      <a href="https://armd.one/"><img src="images/ruby-button.gif" width="88" height="31" alt="Ruby's Crypt"></a>
+      <a href="https://azee.sh/"><img src="images/azee-badge.gif" width="88" height="31" alt="azee.sh"></a>
+      <a href="https://pandaptable.moe"><img src="images/buttons/pandaptable.avif" width="88" height="31" alt="pandaptable.moe"></a>
+      <a href="https://discord.com/users/rbi90" target="_blank" rel="noopener"><img src="images/buttons/discord.gif" width="88" height="31" alt="Message me on Discord"></a>
     </footer>
+
+    <script>
+      // "copy" button for the link-back code.
+      const linkbackCode = document.querySelector('.linkback textarea');
+      linkbackCode.addEventListener('focus', () => linkbackCode.select());
+      document.querySelector('.copy-btn').addEventListener('click', async event => {
+        linkbackCode.select();
+        try {
+          await navigator.clipboard.writeText(linkbackCode.value);
+          event.target.textContent = 'copied!';
+        } catch {
+          event.target.textContent = 'press ctrl+c';
+        }
+      });
+    </script>
 
   </body>
 </html>

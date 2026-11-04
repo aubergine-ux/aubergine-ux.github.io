@@ -4,65 +4,75 @@
   font-display: swap;
 }
 
-.film {
-  border-bottom: 1px solid #6b21a8;
-  padding: 8px 0;
-  margin-bottom: 8px;
+/* The whole palette lives here, so a colour only ever changes in one place. */
+:root {
+  --bg: #1a0a2e;
+  --bg-deep: #0d0618;
+  --panel: #2d1254;
+  --line: #6b21a8;
+  --accent: #c084fc;
+  --text: #e8d5ff;
+  --muted: #a78bca;
+
+  /* Whatever colour sits behind the current element; the ✦ on <hr> uses it. */
+  --behind: var(--bg);
 }
-.film a {
-  font-weight: bold;
-  text-decoration: none;
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "rainyhearts", sans-serif;
+  font-size: 20px;
+  padding: 20px;
+}
+
+.gallery-page {
+  --bg: var(--bg-deep);
+  --behind: var(--bg-deep);
+}
+
+/* Form controls don't pick up the page font on their own; make them. */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
 }
 
 a {
-  color: #c084fc;
+  color: var(--accent);
   text-decoration: none;
-  border-bottom: 2px dashed #6b21a8;
+  border-bottom: 2px dashed var(--line);
 }
 
 a:hover {
-  color: #e8d5ff;
-}
-
-.panel {
-  background: #2d1254;
-  border: 2px solid #6b21a8;
-  padding: 16px;
-  margin-bottom: 16px;
-}
-
-nav {
-  background: #2d1254;
-  padding: 0px 16px;
-  margin-bottom: 16px;
-  border: 2px solid #6b21a8;
-}
-
-nav a {
-  color: #e8d5ff;
-  text-decoration: none;
-  border-bottom: none;
-  font-weight: bold;
-  margin-right: 16px;
-}
-
-nav a:hover {
-  color: #c084fc;
+  color: var(--text);
 }
 
 h1 {
   margin-bottom: 4px;
 }
 
+h1, h2, h3 {
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 4px;
+}
+
 p {
   margin-top: 0;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 hr {
   border: none;
-  border-top: 3px dashed #6b21a8;
+  border-top: 3px dashed var(--line);
   height: 2px;
-  background: linear-gradient(to right, transparent, #6b21a8, transparent);
+  background: linear-gradient(to right, transparent, var(--line), transparent);
   margin: 24px 0;
   position: relative;
 }
@@ -73,20 +83,18 @@ hr::after {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: #1a0a2e;
-  color: #c084fc;
+  background: var(--behind);
+  color: var(--accent);
   padding: 0 8px;
   font-size: 12px;
 }
 
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-img {
-  max-width: 100%;
+.panel {
+  --behind: var(--panel);
+  background: var(--panel);
+  border: 2px solid var(--line);
+  padding: 16px;
+  margin-bottom: 16px;
 }
 
 .header {
@@ -96,94 +104,45 @@ img {
   gap: 16px;
 }
 
-body {
-  background-color: #1a0a2e;
-  color: #e8d5ff;
-  font-family: "rainyhearts", sans-serif;
-  font-size: 20px;
-  padding: 20px;
-}
-
-.sidebar {
+.buttons {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
-.discord-btn {
-  margin-top: auto;
+.btn {
+  background: var(--panel);
+  border: 2px solid var(--line);
+  color: var(--text);
+  padding: 2px 12px;
+  cursor: pointer;
 }
 
-.song {
-  border-bottom: 1px solid #6b21a8;
-  display: flex;
-  padding: 8px 0;
-  gap: 16px;
-  align-items: center;
+.btn:hover,
+.btn:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
-.song h3 {
-  margin: 0 0 2px 0;
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.song p {
-  margin: 0;
-}
-
-.song > div {
-  flex: 1;
-  min-width: 0;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-
-.gallery img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border: 2px solid #6b21a8;
-}
-
-.gallery-page {
-  background-color: #0d0618;
-}
+/* ---------- Layout ---------- */
 
 .layout {
   display: flex;
   gap: 16px;
 }
 
-.date {
-  font-size: 12px;
-  color: #a78bca;
-  margin-top: 0;
+.main {
+  flex: 1;
 }
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
   width: 150px;
   flex-shrink: 0;
-  background: #2d1254;
-  border: 2px solid #6b21a8;
+  background: var(--panel);
+  border: 2px solid var(--line);
   padding: 12px;
-}
-
-.sidebar a {
-  display: block;
-  color: #e8d5ff;
-  margin-bottom: 8px;
-  border-bottom: none;
-}
-
-.sidebar a:hover {
-  color: #c084fc;
-}
-
-.sidebar {
   position: sticky;
   top: 0;
   height: 100vh;
@@ -191,46 +150,74 @@ body {
   align-self: flex-start;
 }
 
-.main {
-  flex: 1;
-}
-
-h1, h2, h3 {
-  border-bottom: 2px solid #6b21a8;
-  padding-bottom: 4px;
-}
-
-.container {
-  display: flex;
-  flex: 1;
-  gap: 8px;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-}
-
-.column img {
-  box-sizing: border-box;
-  width: 100%;
-  height: auto;
+.sidebar a {
   display: block;
-  border: 2px solid #6b21a8;
-  transition: border-color 0.15s ease, filter 0.15s ease;
+  color: var(--text);
+  margin-bottom: 8px;
+  border-bottom: none;
 }
 
-.column img:hover {
-  border-color: #c084fc;
-  filter: brightness(1.1);
+.sidebar a:hover {
+  color: var(--accent);
 }
+
+/* The page you're on. */
+.sidebar a[aria-current="page"] {
+  color: var(--accent);
+}
+
+.sidebar a[aria-current="page"]::before {
+  content: '✦ ';
+}
+
+.buttons-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  padding: 12px;
+  margin-top: 1rem;
+}
+
+/* ---------- Text ---------- */
+
+.prose {
+  line-height: 1.6;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 0;
+}
+
+.date a {
+  color: inherit;
+  border-bottom: 1px dashed var(--line);
+}
+
+.section-desc {
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+.label {
+  font-size: 0.8em;
+  color: var(--muted);
+  min-width: 6rem;
+}
+
+/* ---------- Home ---------- */
 
 .about {
   display: flex;
   gap: 24px;
   align-items: flex-start;
+}
+
+.socks {
+  width: 250px;
 }
 
 .elsewhere {
@@ -247,26 +234,134 @@ h1, h2, h3 {
   align-items: baseline;
 }
 
-.label {
-  font-size: 0.8em;
-  color: #a78bca;
-  min-width: 6rem;
-}
-
-.section-desc {
-  font-size: 0.85em;
-  color: #a78bca;
-  margin-bottom: 0.75rem;
-}
-
-.buttons-footer {
+.linkback {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
-  padding: 12px;
-  margin-top: 1rem;
+  gap: 12px;
+  align-items: center;
 }
+
+.linkback textarea {
+  flex: 1;
+  min-width: 12rem;
+  background: var(--bg);
+  border: 2px solid var(--line);
+  padding: 6px;
+  font-size: 0.75em;
+  resize: none;
+}
+
+/* Blog posts are link targets; leave a little room above them. */
+.post {
+  scroll-margin-top: 16px;
+}
+
+.post:target {
+  border-color: var(--accent);
+}
+
+/* ---------- Music ---------- */
+
+.song {
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  padding: 8px 0;
+  gap: 16px;
+  align-items: center;
+}
+
+.song > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.song h3 {
+  margin: 0 0 2px 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.song p {
+  margin: 0;
+}
+
+.song iframe {
+  border: 0;
+  border-radius: 12px;
+}
+
+/* ---------- Gallery ---------- */
+
+.container {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.column a {
+  display: block;
+  border-bottom: none;
+}
+
+.column img {
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+  border: 2px solid var(--line);
+  transition: border-color 0.15s ease, filter 0.15s ease;
+}
+
+.column a:hover img,
+.column a:focus-visible img {
+  border-color: var(--accent);
+  filter: brightness(1.1);
+}
+
+.lightbox {
+  padding: 0;
+  max-width: 95vw;
+  max-height: 95vh;
+  background: var(--bg-deep);
+  color: var(--text);
+  border: 2px solid var(--line);
+}
+
+.lightbox::backdrop {
+  background: rgba(13, 6, 24, 0.88);
+}
+
+.lightbox img {
+  display: block;
+  max-width: 95vw;
+  max-height: calc(95vh - 4rem);
+  width: auto;
+  margin: 0 auto;
+}
+
+.lightbox-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-top: 2px solid var(--line);
+}
+
+.lightbox-caption {
+  flex: 1;
+  min-width: 10rem;
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+/* ---------- Phones ---------- */
 
 @media (max-width: 600px) {
   body {

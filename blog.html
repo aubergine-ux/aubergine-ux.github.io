@@ -1,22 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Ruby's Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="darkreader-lock">
-    <link rel="icon" type="image/png" href="/favicon.jpg">
-    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <title>Ruby's Blog</title>
+    <meta name="description" content="Ruby's thoughts, ramblings and favorite poem excerpts.">
+    <meta name="theme-color" content="#6b21a8">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ruby's Crypt">
+    <meta property="og:title" content="Ruby's Blog">
+    <meta property="og:description" content="Ruby's thoughts, ramblings and favorite poem excerpts.">
+    <meta property="og:url" content="https://armd.one/blog.html">
+    <meta property="og:image" content="https://armd.one/images/og-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Socks, a black and white tuxedo cat, lounging in the sun.">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preload" href="fonts/rainyhearts.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
+
     <div class="panel">
       <div class="header">
         <h1>Ruby's Blog</h1>
         <div class="buttons">
-          <img src="images/buttons/corporateinvasion.gif" height="31">
+          <img src="images/buttons/corporateinvasion.gif" width="235" height="31" alt="i feel violated by corporate invasion on my attention span">
         </div>
       </div>
-      <p>my thoughts and ramblings <3</p>
+      <p>my thoughts and ramblings &lt;3</p>
     </div>
 
     <div class="layout">
@@ -24,27 +39,31 @@
       <div class="sidebar">
         <h3>Navigation</h3>
         <a href="index.html">Home</a>
-        <a href="blog.html">Blog</a>
+        <a href="blog.html" aria-current="page">Blog</a>
         <a href="music.html">Music</a>
         <a href="gallery.html">Gallery</a>
       </div>
 
       <div class="main">
-        
-        <div class="panel">
+
+        <!--
+          New post? Copy one of these panels to the top. Give it a unique id;
+          the date links to it, so blog.html#that-id goes straight to the post.
+        -->
+
+        <div class="panel post" id="im-dying">
           <h2>Im dying.</h2>
-          <p class="date">May 28th, 2026</p>
-          <p style="font-family: 'Times New Roman', Times, serif; letter-spacing: 0.05em; line-height: 1.8; word-spacing: 0.1em;">
+          <p class="date"><a href="#im-dying">May 28th, 2026</a></p>
+          <p class="prose">
           It's like you made flowers grow in my lungs and although they are beautiful I cannot breathe anymore. <br>
           - An excerpt from Hrishi
           </p>
         </div>
 
-
-        <div class="panel">
-          <h2>In the  Summer.</h2>
-          <p class="date">May 09, 2026</p>
-          <p style="font-family: 'Times New Roman', Times, serif; letter-spacing: 0.05em; line-height: 1.8; word-spacing: 0.1em;">In the summer<br>
+        <div class="panel post" id="in-the-summer">
+          <h2>In the Summer.</h2>
+          <p class="date"><a href="#in-the-summer">May 09, 2026</a></p>
+          <p class="prose">In the summer<br>
           I stretch out on the shore and think of you<br>
           Had I told the sea<br>
           What i felt for you,<br>
@@ -55,10 +74,10 @@
           </p>
         </div>
 
-        <div class="panel">
+        <div class="panel post" id="tomorrow-is-always-coming">
           <h2>Tomorrow Is Always Coming</h2>
-          <p class="date">April 26, 2026</p>
-          <p style="font-family: 'Times New Roman', Times, serif; letter-spacing: 0.05em; line-height: 1.8; word-spacing: 0.1em;">Don’t tell anyone, but part of my reasoning for<br>
+          <p class="date"><a href="#tomorrow-is-always-coming">April 26, 2026</a></p>
+          <p class="prose">Don’t tell anyone, but part of my reasoning for<br>
           taking the flight class, was this idea that if I<br>
           could become my own navigator<br>
           The captain of the sky,<br>
@@ -69,22 +88,20 @@
           </p>
         </div>
 
-        <div class="panel">
+        <div class="panel post" id="test-blog-67">
           <h2>Test Blog #67</h2>
-          <p class="date">April 21, 2026</p>
-          <p style="font-family: 'Times New Roman', Times, serif; letter-spacing: 0.05em; line-height: 1.8; word-spacing: 0.1em;">Hi everyone, its rubes here <3</p>
+          <p class="date"><a href="#test-blog-67">April 21, 2026</a></p>
+          <p class="prose">Hi everyone, its rubes here &lt;3</p>
         </div>
 
       </div>
     </div>
 
     <footer class="buttons-footer">
-      <a><img src="images/ruby-button.gif" width="88" height="31" alt="88x31 button"></a>
-          <a href="https://azee.sh/"><img src="images/azee-badge.gif" width="88" height="31" alt="88x31 button"></a>
-          <a href="https://pandaptable.moe"><img src="https://pandaptable.moe/buttons/button.avif" width="88" height="31" alt="88x31 button"></a>
-          <a href="https://discord.com/users/rbi90" target="_blank">
-            <img src="images/buttons/discord.gif" width="88" height="31">
-          </a>
+      <a href="https://armd.one/"><img src="images/ruby-button.gif" width="88" height="31" alt="Ruby's Crypt"></a>
+      <a href="https://azee.sh/"><img src="images/azee-badge.gif" width="88" height="31" alt="azee.sh"></a>
+      <a href="https://pandaptable.moe"><img src="images/buttons/pandaptable.avif" width="88" height="31" alt="pandaptable.moe"></a>
+      <a href="https://discord.com/users/rbi90" target="_blank" rel="noopener"><img src="images/buttons/discord.gif" width="88" height="31" alt="Message me on Discord"></a>
     </footer>
 
   </body>
